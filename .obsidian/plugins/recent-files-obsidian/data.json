@@ -1,0 +1,78 @@
+{
+  "recentFiles": [
+    {
+      "basename": "README",
+      "path": "zed/language/data-types/README.md"
+    },
+    {
+      "basename": "README",
+      "path": "zed/language/aggregate-functions/README.md"
+    },
+    {
+      "basename": "zng",
+      "path": "zed/formats/zng.md"
+    },
+    {
+      "basename": "Custom-Brimcap-Config",
+      "path": "brimcap/Custom-Brimcap-Config.md"
+    },
+    {
+      "basename": "Home",
+      "path": "brimcap/Home.md"
+    },
+    {
+      "basename": "Docker 101",
+      "path": "docker/Docker 101.md"
+    },
+    {
+      "basename": "zst",
+      "path": "zed/formats/zst.md"
+    },
+    {
+      "basename": "working_with_tables",
+      "path": "nushell/working_with_tables.md"
+    },
+    {
+      "basename": "metadata",
+      "path": "nushell/metadata.md"
+    },
+    {
+      "basename": "table_of_contents",
+      "path": "nushell/table_of_contents.md"
+    },
+    {
+      "basename": "installation",
+      "path": "nushell/installation.md"
+    },
+    {
+      "basename": "shells_in_shells",
+      "path": "nushell/shells_in_shells.md"
+    },
+    {
+      "basename": "dataframes",
+      "path": "nushell/dataframes.md"
+    },
+    {
+      "basename": "service-api",
+      "path": "zed/lake/service-api.md"
+    },
+    {
+      "basename": "design",
+      "path": "zed/lake/design.md"
+    },
+    {
+      "basename": "zjson",
+      "path": "zed/formats/zjson.md"
+    },
+    {
+      "basename": "compression-spec",
+      "path": "zed/formats/compression-spec.md"
+    },
+    {
+      "basename": "nushell_map_functional",
+      "path": "nushell/nushell_map_functional.md"
+    }
+  ],
+  "omittedPaths": [],
+  "maxLength": null
+}
