@@ -7,5 +7,7 @@
   "cycle-through-panes",
   "obsidian-tabs",
   "obsidian-plugin-toc",
-  "remember-cursor-position"
+  "remember-cursor-position",
+  "obsidian-advanced-new-file",
+  "obsidian-git"
 ]

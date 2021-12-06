@@ -4,13 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "a9b23c0908a7ffb0",
+        "id": "21023ff11c589d7e",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "zed/language/data-types/README.md",
+            "file": "Offensive Security/Linux/Linux Persistence.md",
             "mode": "preview"
+          }
+        }
+      },
+      {
+        "id": "7913637fc70ace49",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Offensive Security/Cloud/Azure Active Directory.md",
+            "mode": "source"
           }
         }
       }
@@ -76,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "zed/language/data-types/README.md",
+                "file": "Offensive Security/Linux/Linux Persistence.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +104,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "zed/language/data-types/README.md"
+                "file": "Offensive Security/Linux/Linux Persistence.md"
               }
             }
           },
@@ -113,20 +124,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 268
   },
-  "active": "a9b23c0908a7ffb0",
+  "active": "21023ff11c589d7e",
   "lastOpenFiles": [
-    "zed/language/data-types/README.md",
-    "zed/language/aggregate-functions/README.md",
-    "zed/formats/zng.md",
-    "brimcap/Custom-Brimcap-Config.md",
-    "Custom Brimcap Config.md",
-    "brimcap/Home.md",
-    "docker/Docker 101.md",
-    "zed/formats/zst.md",
-    "nushell/working_with_tables.md",
-    "nushell/metadata.md"
+    "Offensive Security/Linux/Linux Persistence.md",
+    "Offensive Security/Windows/Privilege Escalation.md",
+    "Offensive Security/Windows/Persistence.md",
+    "Offensive Security/Cloud/AWS.md",
+    "Offensive Security/Cloud/Azure Active Directory.md",
+    "Offensive Security/Windows/Avtive Directory Attacks.md",
+    "Offensive Security/Methodology/Network Discovery.md",
+    "Offensive Security/Methodology/Network Pivoting.md",
+    "Offensive Security/Methodology/Bug Bounty.md",
+    "Offensive Security/Windows/Mimikatz.md"
   ]
 }

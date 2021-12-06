@@ -1,76 +1,204 @@
 {
   "recentFiles": [
     {
-      "basename": "README",
-      "path": "zed/language/data-types/README.md"
+      "basename": "Linux Persistence",
+      "path": "Offensive Security/Linux/Linux Persistence.md"
+    },
+    {
+      "basename": "Privilege Escalation",
+      "path": "Offensive Security/Windows/Privilege Escalation.md"
+    },
+    {
+      "basename": "Persistence",
+      "path": "Offensive Security/Windows/Persistence.md"
+    },
+    {
+      "basename": "AWS",
+      "path": "Offensive Security/Cloud/AWS.md"
+    },
+    {
+      "basename": "Azure Active Directory",
+      "path": "Offensive Security/Cloud/Azure Active Directory.md"
+    },
+    {
+      "basename": "Avtive Directory Attacks",
+      "path": "Offensive Security/Windows/Avtive Directory Attacks.md"
+    },
+    {
+      "basename": "Network Discovery",
+      "path": "Offensive Security/Methodology/Network Discovery.md"
+    },
+    {
+      "basename": "Network Pivoting",
+      "path": "Offensive Security/Methodology/Network Pivoting.md"
+    },
+    {
+      "basename": "Bug Bounty",
+      "path": "Offensive Security/Methodology/Bug Bounty.md"
+    },
+    {
+      "basename": "Mimikatz",
+      "path": "Offensive Security/Windows/Mimikatz.md"
+    },
+    {
+      "basename": "Download and Execute",
+      "path": "Offensive Security/Windows/Download and Execute.md"
+    },
+    {
+      "basename": "Using credentials",
+      "path": "Offensive Security/Windows/Using credentials.md"
+    },
+    {
+      "basename": "Metasploit Cheatsheet",
+      "path": "Offensive Security/Metasploit Cheatsheet.md"
+    },
+    {
+      "basename": "Reverse Shells Cheatsheet",
+      "path": "Offensive Security/Reverse Shells Cheatsheet.md"
+    },
+    {
+      "basename": "Linux Privilege Escalation",
+      "path": "Offensive Security/Linux/Linux Privilege Escalation.md"
+    },
+    {
+      "basename": "CobaltStrike Cheatsheet",
+      "path": "Offensive Security/CobaltStrike Cheatsheet.md"
+    },
+    {
+      "basename": "Bit-masking",
+      "path": "Traffic Analysis/Bit-masking.md"
+    },
+    {
+      "basename": "Headers",
+      "path": "Traffic Analysis/Headers.md"
+    },
+    {
+      "basename": "Shark display filters",
+      "path": "Traffic Analysis/Shark display filters.md"
+    },
+    {
+      "basename": "DNS",
+      "path": "Traffic Analysis/DNS.md"
+    },
+    {
+      "basename": "Byte Offsets",
+      "path": "Traffic Analysis/Byte Offsets.md"
+    },
+    {
+      "basename": "Filter syntax",
+      "path": "Traffic Analysis/Filter syntax.md"
+    },
+    {
+      "basename": "Filters",
+      "path": "Traffic Analysis/Filters.md"
+    },
+    {
+      "basename": "SEC",
+      "path": "SEC.md"
+    },
+    {
+      "basename": "SEC",
+      "path": "SEC/SEC.md"
     },
     {
       "basename": "README",
-      "path": "zed/language/aggregate-functions/README.md"
+      "path": "zed/formats/README.md"
     },
     {
-      "basename": "zng",
-      "path": "zed/formats/zng.md"
+      "basename": "README",
+      "path": "zed/language/README.md"
+    },
+    {
+      "basename": "example-zed",
+      "path": "zed/language/images/example-zed.png"
+    },
+    {
+      "basename": "Security",
+      "path": "kubernetes/Security.md"
+    },
+    {
+      "basename": "rahisto",
+      "path": "rahisto.md"
+    },
+    {
+      "basename": "Documentation",
+      "path": "Datamash/Documentation.md"
+    },
+    {
+      "basename": "Network Programming",
+      "path": "Gawk/Network Programming.md"
+    },
+    {
+      "basename": "into",
+      "path": "nushell/commands/into.md"
+    },
+    {
+      "basename": "histogram",
+      "path": "nushell/commands/histogram.md"
+    },
+    {
+      "basename": "fetch",
+      "path": "nushell/commands/fetch.md"
+    },
+    {
+      "basename": "enter",
+      "path": "nushell/commands/enter.md"
+    },
+    {
+      "basename": "BPF Filters",
+      "path": "Traffic Analysis/BPF Filters.md"
     },
     {
       "basename": "Custom-Brimcap-Config",
       "path": "brimcap/Custom-Brimcap-Config.md"
     },
     {
+      "basename": "Geolocation",
+      "path": "brimcap/Geolocation.md"
+    },
+    {
       "basename": "Home",
       "path": "brimcap/Home.md"
     },
     {
-      "basename": "Docker 101",
-      "path": "docker/Docker 101.md"
-    },
-    {
-      "basename": "zst",
-      "path": "zed/formats/zst.md"
-    },
-    {
-      "basename": "working_with_tables",
-      "path": "nushell/working_with_tables.md"
-    },
-    {
-      "basename": "metadata",
-      "path": "nushell/metadata.md"
-    },
-    {
-      "basename": "table_of_contents",
-      "path": "nushell/table_of_contents.md"
-    },
-    {
-      "basename": "installation",
-      "path": "nushell/installation.md"
-    },
-    {
-      "basename": "shells_in_shells",
-      "path": "nushell/shells_in_shells.md"
-    },
-    {
-      "basename": "dataframes",
-      "path": "nushell/dataframes.md"
-    },
-    {
-      "basename": "service-api",
-      "path": "zed/lake/service-api.md"
+      "basename": "zng",
+      "path": "zed/formats/zng.md"
     },
     {
       "basename": "design",
       "path": "zed/lake/design.md"
     },
     {
-      "basename": "zjson",
-      "path": "zed/formats/zjson.md"
+      "basename": "README",
+      "path": "zed/lake/README.md"
     },
     {
-      "basename": "compression-spec",
-      "path": "zed/formats/compression-spec.md"
+      "basename": "example-zed-operator-search",
+      "path": "zed/language/images/example-zed-operator-search.png"
     },
     {
-      "basename": "nushell_map_functional",
-      "path": "nushell/nushell_map_functional.md"
+      "basename": "README",
+      "path": "zed/language/aggregate-functions/README.md"
+    },
+    {
+      "basename": "NTLM Relay",
+      "path": "NTLM/NTLM Relay.md"
+    },
+    {
+      "basename": "README",
+      "path": "kubernetes/README.md"
+    },
+    {
+      "basename": "zson",
+      "path": "zed/formats/zson.md"
+    },
+    {
+      "basename": "README",
+      "path": "zed/language/data-types/README.md"
+    },
+    {
+      "basename": "Docker 101",
+      "path": "docker/Docker 101.md"
     }
   ],
   "omittedPaths": [],
