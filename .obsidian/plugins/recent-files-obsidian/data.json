@@ -1,6 +1,74 @@
 {
   "recentFiles": [
     {
+      "basename": "man",
+      "path": "SEC/man.md"
+    },
+    {
+      "basename": "SEC TUTORIAL",
+      "path": "SEC/SEC TUTORIAL.md"
+    },
+    {
+      "basename": "Documentation",
+      "path": "Datamash/Documentation.md"
+    },
+    {
+      "basename": "NTLM Authentication",
+      "path": "NTLM/NTLM Authentication.md"
+    },
+    {
+      "basename": "NTLM Relay",
+      "path": "NTLM/NTLM Relay.md"
+    },
+    {
+      "basename": "Working with SEC",
+      "path": "SEC/Working with SEC.md"
+    },
+    {
+      "basename": "Working with SEC (Part 2)",
+      "path": "SEC/Working with SEC (Part 2).md"
+    },
+    {
+      "basename": "zst",
+      "path": "zed/formats/zst.md"
+    },
+    {
+      "basename": "Podman",
+      "path": "Containers/Podman.md"
+    },
+    {
+      "basename": "example-zed-operator-search",
+      "path": "zed/language/images/example-zed-operator-search.png"
+    },
+    {
+      "basename": "example-zed",
+      "path": "zed/language/images/example-zed.png"
+    },
+    {
+      "basename": "README",
+      "path": "zed/language/aggregate-functions/README.md"
+    },
+    {
+      "basename": "Reverse Shells Cheatsheet",
+      "path": "Offensive Security/Reverse Shells Cheatsheet.md"
+    },
+    {
+      "basename": "zjson",
+      "path": "zed/formats/zjson.md"
+    },
+    {
+      "basename": "Home",
+      "path": "zui/Home.md"
+    },
+    {
+      "basename": "Azure Active Directory",
+      "path": "Offensive Security/Cloud/Azure Active Directory.md"
+    },
+    {
+      "basename": "AWS",
+      "path": "Offensive Security/Cloud/AWS.md"
+    },
+    {
       "basename": "Linux Persistence",
       "path": "Offensive Security/Linux/Linux Persistence.md"
     },
@@ -11,14 +79,6 @@
     {
       "basename": "Persistence",
       "path": "Offensive Security/Windows/Persistence.md"
-    },
-    {
-      "basename": "AWS",
-      "path": "Offensive Security/Cloud/AWS.md"
-    },
-    {
-      "basename": "Azure Active Directory",
-      "path": "Offensive Security/Cloud/Azure Active Directory.md"
     },
     {
       "basename": "Avtive Directory Attacks",
@@ -51,10 +111,6 @@
     {
       "basename": "Metasploit Cheatsheet",
       "path": "Offensive Security/Metasploit Cheatsheet.md"
-    },
-    {
-      "basename": "Reverse Shells Cheatsheet",
-      "path": "Offensive Security/Reverse Shells Cheatsheet.md"
     },
     {
       "basename": "Linux Privilege Escalation",
@@ -97,10 +153,6 @@
       "path": "SEC.md"
     },
     {
-      "basename": "SEC",
-      "path": "SEC/SEC.md"
-    },
-    {
       "basename": "README",
       "path": "zed/formats/README.md"
     },
@@ -109,20 +161,12 @@
       "path": "zed/language/README.md"
     },
     {
-      "basename": "example-zed",
-      "path": "zed/language/images/example-zed.png"
-    },
-    {
       "basename": "Security",
       "path": "kubernetes/Security.md"
     },
     {
       "basename": "rahisto",
       "path": "rahisto.md"
-    },
-    {
-      "basename": "Documentation",
-      "path": "Datamash/Documentation.md"
     },
     {
       "basename": "Network Programming",
@@ -155,50 +199,6 @@
     {
       "basename": "Geolocation",
       "path": "brimcap/Geolocation.md"
-    },
-    {
-      "basename": "Home",
-      "path": "brimcap/Home.md"
-    },
-    {
-      "basename": "zng",
-      "path": "zed/formats/zng.md"
-    },
-    {
-      "basename": "design",
-      "path": "zed/lake/design.md"
-    },
-    {
-      "basename": "README",
-      "path": "zed/lake/README.md"
-    },
-    {
-      "basename": "example-zed-operator-search",
-      "path": "zed/language/images/example-zed-operator-search.png"
-    },
-    {
-      "basename": "README",
-      "path": "zed/language/aggregate-functions/README.md"
-    },
-    {
-      "basename": "NTLM Relay",
-      "path": "NTLM/NTLM Relay.md"
-    },
-    {
-      "basename": "README",
-      "path": "kubernetes/README.md"
-    },
-    {
-      "basename": "zson",
-      "path": "zed/formats/zson.md"
-    },
-    {
-      "basename": "README",
-      "path": "zed/language/data-types/README.md"
-    },
-    {
-      "basename": "Docker 101",
-      "path": "docker/Docker 101.md"
     }
   ],
   "omittedPaths": [],

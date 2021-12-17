@@ -4,21 +4,21 @@
 
 **Table of Contents**
 
-1 [Introduction](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#INTRODUCTION)
+1 [Introduction](#INTRODUCTION)
 
-2 [Getting Started](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#GETTINGSTARTED)
+2 [Getting Started](#GETTINGSTARTED)
 
-3 [SEC In Depth](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#SECINDEPTH)
+3 [SEC In Depth](#SECINDEPTH)
 
-4 [Using Contexts](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#USINGCONTEXTS)
+4 [Using Contexts](#USINGCONTEXTS)
 
-5 [Applications to Logfile Monitoring](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#APPLICATIONSTOLOGFILEMONITORING)
+5 [Applications to Logfile Monitoring](#LOGFILEMONITORING)
 
-6 [Part One Conclusion](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#PARTONECONCLUSION)
+6 [Part One Conclusion](#PARTONECONCLUSION)
 
 ---
 
-# 1 Introduction
+# 1 [Introduction](#INTRODUCTION)
 
 SEC was written by Risto Vaarandi, a professional software developer from Estonia, and is available from the [SEC Home Page.](http://simple-evcorr.sourceforge.net/) Risto has provided a [Manual Page,](http://simple-evcorr.sourceforge.net/man.html) a [FAQ](http://simple-evcorr.sourceforge.net/FAQ.html) and some [Examples](http://simple-evcorr.sourceforge.net/rulesets) that are helpful in developing advanced solutions. There is also an active [Mailing List.](http://lists.sourceforge.net/mailman/listinfo/simple-evcorr-users)
 
@@ -30,7 +30,7 @@ This article introduces basic SEC use and operations, using examples from simple
 
 ---
 
-# 2 Getting Started
+# 2 [Getting Started](#GETTINGSTARTED)
 
 To get started with SEC, download the latest version from the [SEC download page at Sourceforge.](http://sourceforge.net/project/showfiles.php?group_id=42089) Unpack the tarball, cd into the directory containing the **sec.pl** perl script.
 
@@ -50,23 +50,23 @@ SEC uses a configuration file and takes input from a file or a named pipe. Perfo
 ```
 
 
-	[![(1)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/1.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-TYPE)
+[![(1)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/1.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-TYPE)
     
     Single is the rule type. SEC includes several different types of rules that are useful in event correlation. This rule is of type _Single_.
     
-    [![(2)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/2.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-PTYPE)
+   [![(2)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/2.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-PTYPE)
     
     RegExp is the pattern type, one of _RegExp_ (for `Regular Expression') matching or _SubStr_, for simpler string matching.
     
-    [![(3)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/3.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-PATTERN)
+   [![(3)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/3.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-PATTERN)
     
     foo\s+(\S+) is the actual pattern- in this case a perl regular expression pattern. This pattern matches the word foo followed by one or more spaces, followed by one or more non-space characters, such as bar, grok, or 1:443z--?. If you are new to perl regular expressions, you are well advised to read Nicholas Clarks introduction [perlretut](http://search.cpan.org/~nwclark/perl-5.8.2/pod/perlretut.pod).
     
-    [![(4)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/4.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-DESC)
+   [![(4)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/4.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-DESC)
     
     desc is a variable definition for the pattern description. In this case a perl numbered variable, $0, is set to the entire matched pattern.
     
-    [![(5)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/5.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-ACTION)
+   [![(5)](http://simple-evcorr.sourceforge.net/SEC-tutorial/imagelib/callouts/5.png)](http://simple-evcorr.sourceforge.net/SEC-tutorial/article.html#CO-A01-ACTION)
     
     The action statement describes the action taken when the pattern is recognized. In this case, the logonly action simply writes the pattern to the logfile if one is indicated on the command line, or to standard output if not.
     
@@ -75,82 +75,68 @@ SEC uses a configuration file and takes input from a file or a named pipe. Perfo
 `% **perl sec.pl -conf=C2.1.01.conf -input=-**`
 
 -   his example will take input from directly from the terminal. Type the following lines of input:
-    
+`
     **foo
     foo bar
     baz
     bar foo
-    bar foo baz**
+    bar foo baz**`
+       
+   Notice that SEC responds by replying (logging to standard output) every time a pattern is matched:
     
-      
-      
-    
-    Notice that SEC responds by replying (logging to standard output) every time a pattern is matched:
-    
-    **foo**
+` **foo**
     **foo bar**
     foo bar
     **baz**
     **bar foo**
     **bar foo baz**
-    bar foo baz
-    
-      
-      
-    
-    In this example, you have created a SEC rule that matches a regular expression, and tested it with input from the terminal.
+    bar foo baz`
+ 
+ In this example, you have created a SEC rule that matches a regular expression, and tested it with input from the terminal.
     
 -   To see how SEC operates on files, instead of standard input, copy the test input above into a temporary file, T2.1.01.txt. Next, create an empty file that you intend to monitor with SEC, monitor.me.
     
     Now execute SEC with the following command:
     
-    % **perl sec.pl -conf=C2.1.01.conf -input=monitor.me**
+`% **perl sec.pl -conf=C2.1.01.conf -input=monitor.me**`
     
-      
-      
-    
-    ~/sec-2.1.11% perl sec.pl -input=monitor.me -conf=C2.1.01.conf
+
+`~/sec-2.1.11% perl sec.pl -input=monitor.me -conf=C2.1.01.conf
     Simple Event Correlator version 2.1.11
     Reading configuration from C2.1.01.conf
-    1 rules loaded from C2.1.01.conf
+    1 rules loaded from C2.1.01.conf`
     
-    SEC is now running in your terminal session, and reading input from monitor.me. In a separate window, or terminal session in the same directory, perform the following:
+   SEC is now running in your terminal session, and reading input from monitor.me. In a separate window, or terminal session in the same directory, perform the following:
     
-    % **cat T2.1.01.txt >> monitor.me**
+    `% **cat T2.1.01.txt >> monitor.me**`
     
-      
-      
-    
+  
+```   
     ~/sec-2.1.11% perl sec.pl -input=monitor.me -conf=C2.1.01.conf
     Simple Event Correlator version 2.1.11
     Reading configuration from C2.1.01.conf
     1 rules loaded from C2.1.01.conf
     foo bar
     bar foo baz
-    ^C
+```
     
-    SEC parsed the input that arrived in monitor.me and performed it's actions (logging to standard output) when it recognized the patterns in the input stream.
+   SEC parsed the input that arrived in monitor.me and performed it's actions (logging to standard output) when it recognized the patterns in the input stream.
     
-    This is the basic operation of SEC. In this case, the ``events'' were the arrival of 2 matched pattern in the input stream. Although this is a simple example, SEC is capable of far more powerful matching and complex operation.
-    
-
----
-
+   This is the basic operation of SEC. In this case, the `events` were the arrival of 2 matched pattern in the input stream. Although this is a simple example, SEC is capable of far more powerful matching and complex operation.
+ 
 ## 2.2 Other SEC Actions
 
 SEC has well over a dozen different actions it can perform once it matches a pattern in the input stream. Some of the actions depend on _contexts_ which will be described in a later section. The following sections describe the actions that can be used all by themselves.
 
----
-
 ### 2.2.1 write
 
-write <filename> [<event text>]
+`write <filename> [<event text>]`
 
 This example uses the _write_ action. The _write_ action writes the specified text to the named filename.
 
 Copy
 
-# Example C2.2.1.01.conf
+```# Example C2.2.1.01.conf
 # Recognize a pattern and write to a file.
 # Writes $0 Complete matched pattern, to file.
 #
@@ -160,35 +146,31 @@ ptype=RegExp
 pattern=foo\s+(\S+)
 desc=$0
 action=write - Hello from SEC.  Matched text was $0
+```
 
 to C2.2.1.01.conf. Note that the action statement now reads:  
-  
 
-action=write - Hello from SEC. Matched text was $0
-
-  
-  
-
-A filename of ``-'' means write to standard output.
+`action=write - Hello from SEC. Matched text was $0`
+`A filename of - means write to standard output.`
 
 Save C2.2.1.01.conf and run the example with input taken from standard input:
 
-% **perl sec.pl -conf=C2.2.1.01.conf -input=-**
+`% **perl sec.pl -conf=C2.2.1.01.conf -input=-**`
 
 Type the matched pattern:
 
-**foo baz**
+`**foo baz**`
 
 and you should see the new action statement thus:  
   
 
-~/SEC-examples%perl sec.pl -conf=C2.2.1.01.conf -input=-
+`~/SEC-examples%perl sec.pl -conf=C2.2.1.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C2.2.1.01.conf
 1 rules loaded from C2.2.1.01.conf
 **foo baz**
 Writing event 'Hello from SEC.  Matched text was foo baz' to file -
-Hello from SEC.  Matched text was foo baz
+Hello from SEC.  Matched text was foo baz`
 
 The line
 
@@ -196,43 +178,41 @@ Writing event 'Hello from SEC.  Matched text was foo baz' to file -
 
 is an example of SEC informative debug output. To prevent SEC from writing it's informative output, change the debug level with the addition of the _-debug=n_ command line parameter:
 
-% **perl sec.pl -conf=C2.2.1.01.conf -input=- -debug=4**
+`% **perl sec.pl -conf=C2.2.1.01.conf -input=- -debug=4**`
 
 A level of -debug=4 outputs only notification messages and lower levels of debug output as in:
 
+```
 ~/SEC-examples%perl sec.pl -conf=C2.2.1.01.conf -input=- -debug=4
 Simple Event Correlator version 2.1.11
 Reading configuration from C2.2.1.01.conf
 **foo baz**
 Hello from SEC.  Matched text was foo baz
 ^C
+```
 
-  
-  
-
----
 
 ### 2.2.2 shellcmd
 
-shellcmd <shellcmd>
+`shellcmd <shellcmd>`
 
 The _shellcmd_ action causes SEC to execute a shell command. The shell command can be any executable program permitted by normal user privileges.
 
 Copy the following small shell script into S2.2.2.01.sh.
 
-#!/bin/sh
+```#!/bin/sh
 # Shell command for Example C2.2.2.01.conf
 #
 echo "Start of S2.2.2.01.sh  shell script"
 echo "Finding number of files in directory..."
 ls | wc -l
 echo "End of shell script"
+```
 
   
-  
+  Now copy the following SEC configuration into C2.2.2.01.conf.
 
-Now copy the following SEC configuration into C2.2.2.01.conf.
-
+```shell
 # Example C2.2.2.01.conf
 # Recognize a pattern and run a shell script.
 #
@@ -241,21 +221,20 @@ type=Single
 ptype=RegExp
 pattern=foo\s+(\S+)
 desc=$0
-action=shellcmd S2.2.2.01.sh
+action=shellcmd S2.2.2.01.sh```
 
   
-  
+  Run with:
 
-Run with:
-
-% **perl sec.pl -conf=C2.2.2.01.conf -input=-**
+`% **perl sec.pl -conf=C2.2.2.01.conf -input=-**`
 
 If the shell command is not executable at all, SEC will indicate with the warning:
 
-Rule in C2.2.2.01.conf at line 5: Warning - '/home/jpb/SEC-examples/S2.2.2.01.sh' is not executable
+`Rule in C2.2.2.01.conf at line 5: Warning - '/home/jpb/SEC-examples/S2.2.2.01.sh' is not executable`
 
 If other errors prevent operation of the command, SEC will indicate with suitable warning or error messages. Otherwise, when SEC matches the pattern in the input stream, it will execute the script as requested:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C2.2.2.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C2.2.2.01.conf
@@ -267,25 +246,24 @@ Start of S2.2.2.01.sh  shell script
 Finding number of files in directory...
       33
 End of shell script
-^C
+```
 
 Control of the extra debug output is similar to that described above.  
   
 
 > **Note:** User programs or scripts that are run with the _shell_ or _spawn_ (see below) actions must be in the PATH available to SEC at run time and not just in the current directory where SEC was started. In particular, if SEC is started with the _-detach_ option (described in Section 3) to make it a daemon process, the working directory for SEC is changed to the root directory.
-> 
 > Use of fully qualified path names for scripts is recommended.
 
----
 
 ### 2.2.3 spawn
 
-spawn <shellcmd>
+`spawn <shellcmd>`
 
 The _spawn_ action is identical to the _shellcmd_ action, except that output from the command is fed back into SEC for pattern matching.
 
 Copy the following into C2.2.3.01.conf:
 
+```shell
 # Example C2.2.3.01.conf
 # Recognize a pattern and use the spawn action.
 #
@@ -302,21 +280,19 @@ ptype=RegExp
 pattern=ABCD_(.*)
 desc=$0
 action=write - Matched $0 from $1
-
-  
+```
   
 
 Now copy the following to S2.2.3.01.sh:
 
+```shell
 #!/bin/sh
 # Shell command for Example C2.2.3.01.conf
 #
 echo "Start of S2.2.3.01.sh  shell command"
 echo "ABCD_"$$
 echo "End of shell script"
-
-  
-  
+```
 
 The C2.2.3.01.conf rule file now contains two rules. The first rule matches the same pattern as the previous examples, and will _spawn_ the shell script S2.2.3.01.sh when triggered.
 
@@ -324,17 +300,17 @@ The second rule matches the pattern ABC_(.*), meaning match ABCD_ followed by an
 
 The S2.2.3.01.sh script executed by the first rule echos a start banner then executes the line
 
-echo "ABCD_"$$
+`echo "ABCD_"$$`
 
 echoing literal ABCD_ followed by the process ID of the shell script.  
   
-
 We will need the informational debug output, so use the command:
 
-% **perl sec.pl -conf=C2.2.3.01.conf -input=-**
+```% **perl sec.pl -conf=C2.2.3.01.conf -input=-**```
 
 Assuming no errors, the output looks like this:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C2.2.3.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C2.2.3.01.conf
@@ -347,24 +323,21 @@ Creating event 'ABCD_14893' (received from child 14893)
 Creating event 'End of shell script' (received from child 14893)
 Writing event 'Matched ABCD_14893 from 14893' to file -
 Matched ABCD_14893 from 14893
-^C
+```
 
-  
-  
+ 
+The debug output shows how child process 14893 was created by SEC when the first pattern was matched. The next three lines indicate ``Creating event ... for each line of output by the S2.2.3.01.sh script.``
 
-The debug output shows how child process 14893 was created by SEC when the first pattern was matched. The next three lines indicate ``Creating event ...'' for each line of output by the S2.2.3.01.sh script.
-
-The ``Writing event ...'' line indicates that the second rule has matched its pattern. Finally, the pattern itself is written to standard output by the second rule action statement. This feedback mechanism can be very useful in many event correlation tasks.
+The ``Writing event ...`` line indicates that the second rule has matched its pattern. Finally, the pattern itself is written to standard output by the second rule action statement. This feedback mechanism can be very useful in many event correlation tasks.
 
 _spawn_ is quite often used to create multiple input streams for SEC to process. See Section 3.3 for an example of this usage.
 
----
 
 ### 2.2.4 assign And eval
 
-assign %<letter> [<text>]
+`assign %<letter> [<text>]
 
-eval %<letter> <code>
+eval %<letter> <code>`
 
 Both _assign_ and _eval_ deal with ``% <letter>'' variables. These special variables are of the form ``%n'' where ``n'' is a single letter from the set ``[A-Za-z]''. These variables are _not_ perl hashes. They are internal SEC variables that can be used in rules. SEC reserves the following special variables:
 
@@ -374,7 +347,7 @@ _Description_
 
 %s
 
-The event description string- that is, the entire matched pattern if the parameter is ``$0''. Otherwise it is the entire operand of the _desc_ parameter, including backreference substitutions if any.
+The event description string- that is, the entire matched pattern if the parameter is `$0`. Otherwise it is the entire operand of the _desc_ parameter, including `backreference` substitutions if any.
 
 %t
 
@@ -388,33 +361,33 @@ Special variables have global scope across multiple SEC rule files. If an assign
 
 Copy the following to C2.2.4.01a.conf:
 
+```ahwll
 # Example C2.2.4.01a.conf
 # Recognize a pattern and use the assign and eval actions.
 #
-type=Single
+`type=Single
 ptype=RegExp
 pattern=foo
 desc=$0
 action=assign %f Mary had a little lamb,
-
-  
-  
+```
 
 Copy the following to C2.2.4.01b.conf:
 
+```shell
 # Example C2.2.4.01b.conf
 # This rule uses the eval action to assign its variable.
-type=Single
+`type=Single
 ptype=RegExp
 pattern=bar
 desc=$0
 action=eval %h ($t = "its fleece had neon glow")
-
+```
   
   
-
 Copy the following to C2.2.4.01c.conf:
 
+```shell
 # Example C2.2.4.01c.conf
 # This rule uses the write action to write %f, %h, and %t
 type=Single
@@ -422,21 +395,21 @@ ptype=RegExp
 pattern=baz
 desc=$0
 action=write - %f %h at %t
+```
 
   
-  
-
-Note that the patterns for this example have been simplified to match just the single words ``foo'' ``bar'' and ``baz''.
+Note that the patterns for this example have been simplified to match just the single words `foo` `bar` and `baz`.
 
 For this example, SEC must be told to use all three configuration files:
 
-% **perl sec.pl -conf=C2.2.4.01a.conf \
+`% **perl sec.pl -conf=C2.2.4.01a.conf \
       -conf=C2.2.4.01b.conf \
       -conf=C2.2.4.01c.conf \
-      -input=-**
+      -input=-**`
 
 and input the three words in order:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C2.2.4.01a.conf \
 >           -conf=C2.2.4.01b.conf \
 >           -conf=C2.2.4.01c.conf \
@@ -455,26 +428,22 @@ Evaluating code '$t = "its fleece had a neon glow"' and setting variable '%h'
 Assigning value 'its fleece had a neon glow' to variable '%h'
 **baz**
 Writing event 'Mary had a little lamb, its fleece had a neon glow at Thu Nov 20 04:34:32 2003' to file -
-Mary had a little lamb, its fleece had a neon glow at Thu Nov 20 04:34:32 2003
-^C
+Mary had a little lamb, its fleece had a neon glow at Thu Nov 20 04:34:32 2003```
+   
 
-  
-  
-
-Each variable assignment is shown by the debug output. The ``%t'' variable is set automatically by SEC.
-
----
+Each variable assignment is shown by the debug output. The `%t` variable is set automatically by SEC.
 
 ### 2.2.5 event
 
-event [<time>] [<event text>]
+`event [<time>] [<event text>]`
 
 Finally, there is the _event_ action. _event_ allows the insertion of input to SEC from inside SEC itself. It is a simple feedback mechanism- one controlled by SEC's own rules. The _time_ parameter is the number of seconds to wait before inserting the event text into SEC's input stream. For non-zero _time_ values this is, in effect, asynchronous in that other input events can be processed between the time the _event_ action is called and the time the event text is recognized. Both cases are considered below.
 
-Note that this example also introduces the capability to use multiple actions (separated by a ``;'') within the same rule.
+Note that this example also introduces the capability to use multiple actions (separated by a `;` within the same rule.
 
 First, copy the following to C2.2.5.01.conf:
 
+```shell
 # Example C2.2.5.01.conf
 # Use the event action to queue input in the future.
 # Also an example of using multiple actions, and
@@ -499,20 +468,15 @@ type=Single
 ptype=RegExp
 pattern=baz
 desc=$0
-action=write - %s matched at %t
+action=write - %s matched at %t```
 
-  
-  
+  Run with:
 
-Run with:
+`% **perl sec.pl -conf=C2.2.5.01.conf -input=-**`
 
-% **perl sec.pl -conf=C2.2.5.01.conf -input=-**
+Enter the first input pattern ``foo`` and then immediately enter the second input pattern ``bar``. Then wait and observe that SEC processes the input for ``baz`` after the requested delay of 5 seconds.
 
-  
-  
-
-Enter the first input pattern ``foo'' and then immediately enter the second input pattern ``bar''. Then wait and observe that SEC processes the input for ``baz'' after the requested delay of 5 seconds.
-
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C2.2.5.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C2.2.5.01.conf
@@ -526,21 +490,20 @@ bar is matched.
 Creating event 'baz is now matched.'
 Writing event 'baz is now matched. matched at Sat Nov 15 07:03:15 2003' to file -
 baz is now matched. matched at Sat Nov 15 07:03:15 2003
-^C
-
-  
-  
+```
 
 For a _time_ value of zero however, SEC processes events immediately- even before the next line of input from the input stream. To demonstrate this, change action lines in the first rule to read:
 
+```shell
 action=event 0 baz is now matched.; \
-       write - foo matched at %t.
+       write - foo matched at %t.```
 
 and rerun the example.  
   
 
 The output now becomes:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C2.2.5.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C2.2.5.01.conf
@@ -554,28 +517,26 @@ baz is now matched. matched at Sat Nov 15 07:13:35 2003
 **bar**
 Writing event 'bar is matched.' to file -
 bar is matched.
-^C
-
-  
-  
+```
+ 
 
 This ordering of _event_ is true even when input is read from a fast input stream.
 
----
 
-# 3 SEC In Depth
+# [3 SEC In Depth](#SECINDEPTH)
 
 SEC has many parameters that control it's operation. These are viewed by simply calling SEC with no parameters:
 
-% **perl sec.pl**
-
+`% **perl sec.pl**`
   
 Version: 2.1.11
 
 Usage:
-  sec.pl -input=<inputfile> -conf=<conffile pattern> ...
+`  sec.pl -input=<inputfile> -conf=<conffile pattern> ...`
 
 Optional flags:
+
+```shell
   -input_timeout=<input timeout>
   -timeout_script=<timeout script>
   -reopen_timeout=<reopen timeout>
@@ -594,9 +555,10 @@ Optional flags:
   -detach, -nodetach
   -intevents, -nointevents
   -testonly, -notestonly
+```
 
 Obsolete flags:
-  -separator=<separator>
+  `-separator=<separator>`
 
 All options are fully described in the SEC [Manual Page](http://simple-evcorr.sourceforge.net/man.html). Options of the form -name=value are required to have a value. As noted above the ``-conf=<conffile pattern>'' and ``-input=<inputfile>'' options are required when executing **perl sec.pl**. A brief review of some of the more common options follows:  
   
@@ -605,19 +567,19 @@ _Option_
 
 _Description_
 
--log=<logfile>
+`-log=<logfile>`
 
 This option specifies the location of a logfile that SEC uses to track it's operation, such as pattern matches, actions, etc. The volume of information is controlled by the -debug option.
 
--debug=<debuglevel>
+`-debug=<debuglevel>`
 
 This option controls how verbose SEC is as it tracks it's operation. The values range between 1 (critical messages) and 6 (debug messages). Each level includes output from lower levels.
 
--pid=<pidfile>
+`-pid=<pidfile>`
 
 This option provides for the location of a process ID file. SEC will write it's process ID to this file upon startup.
 
--dump=<dumpfile>
+`-dump=<dumpfile>`
 
 This option provides for the location of a dump file where SEC can dump its internal data structures, variables and other information upon receipt of the _USR1_ signal. The default location is /tmp/sec.dump.
 
@@ -625,11 +587,11 @@ This option provides for the location of a dump file where SEC can dump its inte
 
 Specifying this option causes SEC to detach itself from the controlling terminal and run as a daemon process. The default is -nodetach.
 
--intevents
+`-intevents`
 
 This option causes SEC to perform special processing at startup. This special processing is described in the SEC man page.
 
--testonly
+`-testonly`
 
 The ``-testonly'' option can be used to test for syntax errors in configuration files. It does not start SEC for operation.
 
@@ -637,7 +599,7 @@ The above options are the most common in ordinary usage. See the [Manual Page](h
 
 ---
 
-## 3.1 SEC Rule Types
+## 3.1 [SEC Rule Types](#SECRULETYPES)
 
 SEC contains several rule types (other than _Single_ introduced in Section 2) for event correlation. The following table lists the other rule types and gives a short summary of each:
 
@@ -645,35 +607,35 @@ _Rule Type_
 
 _Description_
 
-SingleWithScript
+`SingleWithScript`
 
 The _SingleWithScript_ rule integrates external scripts with SEC pattern matching, not as an action as used in Section 2.2.2. Its rule definition is similar to the Single rule, with the exception of an additional _script_ parameter.
 
-SingleWithSuppress
+`SingleWithSuppress`
 
 The _SingleWithSuppress_ rule implements compression of multiple matched events into a single event. Its rule definition is also similar to the Single rule, with the exception of an additional _window_ parameter.
 
-Pair
+`Pair`
 
 The _Pair_ combines two or more events into a single event within a given time window. The rule definition for _Pair_ contains several new parameters.
 
-PairWithWindow
+`PairWithWindow`
 
 The _PairWithWindow_ also correlates two or more events inside a time window. The rule definition for _PairWithWindow_ is similar to the _Pair_.
 
-SingleWithThreshold
+`SingleWithThreshold`
 
 The _SingleWithThreshold_ rule counts matching events within a time window up to a threshold. When the threshold is reached an action is executed and further matching events after the threshold are ignored for the remainder of the time window.
 
-SingleWith2Thresholds
+`SingleWith2Thresholds`
 
 The _SingleWith2Thresholds_ rule counts matching events within time window _t1_ and executes an action when the the first threshold is reached. The count is reset and matched events are counted for _t2_ seconds. Execute another action if the count falls below the second threshold within time window _t2_.
 
-Suppress
+`Suppress`
 
 The _Suppress_ rule suppresses matching input events. This rule has no action, but simply filters out all matching events.
 
-Calendar
+`Calendar`
 
 The _Calendar_ rule executes an action at specific times. The time parameters for this rule are similar to cron(8).
 
@@ -693,6 +655,7 @@ The _SingleWithScript_ rule combines matching a pattern and the execution of a s
 
 Copy the following to C3.2.1.01.conf:
 
+```
 # Example C3.2.1.01.conf
 # Single with script.  Pass matched IP address
 # to script for validation. If valid, execute
@@ -708,6 +671,7 @@ script=/usr/bin/perl /home/jpb/SEC-examples/S3.2.1.01.pl $0
 desc=$0
 action=write - IP address $0  matches.
 action2=write - IP address $0  does NOT match.
+```
 
   
   
@@ -718,6 +682,7 @@ Also note that this rule takes two action statements. SEC checks the return valu
 
 Next, copy the following to script S3.2.1.01.pl
 
+```perl
 #!/usr/bin/perl
 #
 # Script S3.2.1.01.pl - check if IP argument
@@ -737,7 +702,7 @@ foreach $ip (@match_list)
 }
 
 exit 1;
-
+```
   
   
 
@@ -745,18 +710,21 @@ Script S3.2.1.01.pl accepts a single IP address on the command line passed from 
 
 Run with:
 
-% **perl sec.pl -conf=C3.2.1.01.conf -input=-**
+`% **perl sec.pl -conf=C3.2.1.01.conf -input=-**`
 
   
   
 
 Output looks like this:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.1.01.pl -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.1.01.pl
 Can't open configuration file C3.2.1.01.pl (No such file or directory)
-^C
+```
+
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.1.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.1.01.conf
@@ -771,14 +739,11 @@ Child 16398 created for command '/usr/bin/perl /home/jpb/SEC-examples/S3.2.1.01.
 Child 16398 terminated with non-zero exitcode 1
 Writing event 'IP address 5.6.7.8  does NOT match.' to file -
 IP address 5.6.7.8  does NOT match.
-^C
-
+```
   
   
 
 More robust IP address matching is possible with the **Net::IP_Addr** perl module.
-
----
 
 ### 3.2.2 SingleWithSuppress
 
@@ -786,6 +751,7 @@ With the _SingleWithSuppress_ rule it is possible to become alerted to an event 
 
 Copy the following to C3.2.2.01.conf:
 
+```shell
 # Example C3.2.2.01.conf
 # Example of SingleWithSuppress
 #
@@ -795,19 +761,19 @@ pattern=foo
 desc=$0
 action=write - $0 suppressed for 5 seconds at %t
 window=5
-
+```
   
   
 
 Run with:
 
-% **perl sec.pl -conf=C3.2.2.01.conf -input=-**
+`% **perl sec.pl -conf=C3.2.2.01.conf -input=-**`
 
-and continuously enter ``foo'' as rapidly as possible.  
+and continuously enter `foo` as rapidly as possible.  
   
-
 Output:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.2.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.2.01.conf
@@ -832,13 +798,7 @@ foo suppressed for 5 seconds at Sat Nov 15 17:04:44 2003
 Writing event 'foo suppressed for 5 seconds at Sat Nov 15 17:04:50 2003' to file -
 foo suppressed for 5 seconds at Sat Nov 15 17:04:50 2003
 **foo**
-^C
-
-  
-  
-
----
-
+```
 ### 3.2.3 Pair
 
 The _Pair_ rule handles two different events, matched by two different patterns in its rule definition. The rule uses a time window which is set upon the first occurrence of event A. If event B occurs within the time window, events A and B are considered correlated, and the entire rule is considered matched. Otherwise, the correlation operation for the pair terminates.
@@ -847,6 +807,7 @@ There are two action statements, each corresponding to its own pattern. Action o
 
 Copy the following to C3.2.3.01.conf:
 
+```shell
 # Example C3.2.3.01.conf
 # Example Pair rule.
 # Match event A and B within window.
@@ -861,21 +822,18 @@ pattern2=bar
 desc2=$0
 action2=write - bar matched at %t.  bar is within window!
 window=5
+```
+
+ Run with:
+
+`% **perl sec.pl -conf=C3.2.3.01.conf -input=-**`
 
   
-  
-
-Run with:
-
-% **perl sec.pl -conf=C3.2.3.01.conf -input=-**
-
-  
-  
-
-When running this rule, first enter ``foo'' and ``bar'' close together (i.e. within 5 seconds). Then enter ``foo'' and wait to enter ``bar'' until the window is past (i.e. more than 5 seconds.) The first time the _Pair_ rule will correlate them together, while the second time they are not correlated.
+When running this rule, first enter `foo` and `bar` close together (i.e. within 5 seconds). Then enter `foo` and wait to enter `bar` until the window is past (i.e. more than 5 seconds.) The first time the _Pair_ rule will correlate them together, while the second time they are not correlated.
 
 Output will look similar to:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.3.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.3.01.conf
@@ -887,15 +845,10 @@ foo matched at Sat Nov 15 18:17:07 2003. Start window of 5 seconds for bar ...
 Writing event 'bar matched at Sat Nov 15 18:17:09 2003.  bar is within window!' to file -
 bar matched at Sat Nov 15 18:17:09 2003.  bar is within window!
 **foo**
-Writing event 'foo matched at Sat Nov 15 18:17:14 2003. Start window of 5 seconds for bar ...' to file -
+Writing event 'foo matched at Sat Nov 15 18:17:14 2003. Start window of 5 seconds for bar ...'' to file -
 foo matched at Sat Nov 15 18:17:14 2003. Start window of 5 seconds for bar ...
 **bar**
-^C
-
-  
-  
-
----
+```
 
 ### 3.2.4 PairWithWindow
 
@@ -905,6 +858,7 @@ The difference is that, in _PairWithWindow_ the _action2_ is executed if events 
 
 Copy the following to C3.2.4.01.conf:
 
+```shell
 # Example C3.2.4.01.conf
 # Example PairWithWindow rule.
 # Match both events A and B within window executes action2.
@@ -919,22 +873,20 @@ ptype2=RegExp
 pattern2=bar
 desc2=$0
 action2=write - foo and bar both matched within 5 second window!
-window=5
+window=5```
 
   
   
 
 Run with:
 
-% **perl sec.pl -conf=C3.2.4.01.conf -input=-**
-
-  
-  
+`% **perl sec.pl -conf=C3.2.4.01.conf -input=-**`
 
 When running this rule, first enter ``foo'' and ``bar'' close together (i.e. within 5 seconds). Then enter ``foo'' and wait to enter ``bar'' until the window is past (i.e. more than 5 seconds.) The first time the _PairWithWindow_ rule will correlate them together, while the second time they are not correlated.
 
 Output looks like:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.4.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.4.01.conf
@@ -947,21 +899,17 @@ foo and bar both matched within 5 second window!
 **foo**
 Writing event 'foo matched, bar NOT matched within window.' to file -
 foo matched, bar NOT matched within window.
-^C
-
-  
-  
-
----
+```
 
 ### 3.2.5 SingleWithThreshold
 
-The _SingleWithThreshold_ rule is used to ``count'' the number of matched events within a time window. If the number exceeds the threshold, the _action_ is executes
+The _SingleWithThreshold_ rule is used to ``count`` the number of matched events within a time window. If the number exceeds the threshold, the _action_ is executes
 
-If the number of matched events, does not exceed the threshold within the time window, the time window ``slides''- that is, start time for the correlation window is moved to the second occurrence of the matched pattern. This process repeats, until the time window expires with no new matched events.
+If the number of matched events, does not exceed the threshold within the time window, the time window `slides`- that is, start time for the correlation window is moved to the second occurrence of the matched pattern. This process repeats, until the time window expires with no new matched events.
 
 Copy the following to C3.2.5.01.conf:
 
+```shell
 # Example C3.2.5.01.conf
 # Example SingleWithThreshold rule.
 # Match event A thresh number of times in window
@@ -975,25 +923,24 @@ desc=$0
 action=write - foo matched three times in 10 seconds!
 window=10
 thresh=3
+```
 
-  
-  
 
 Run with:
 
-% **perl sec.pl -conf=C3.2.5.01.conf -input=-**
+`% **perl sec.pl -conf=C3.2.5.01.conf -input=-**`
 
-  
-  
 
-When running this rule, first enter ``foo'' three times close together (i.e. within 10 seconds). The _action_ will execute.
 
-Then enter ``foo'' slowly, waiting five to eight seconds between each entry. Since there are never three entries (_thresh=3_) entered within the sliding window, the rule is not matched and the _action_ is not executed.
+When running this rule, first enter `foo` three times close together (i.e. within 10 seconds). The _action_ will execute.
+
+Then enter `foo` slowly, waiting five to eight seconds between each entry. Since there are never three entries (_thresh=3_) entered within the sliding window, the rule is not matched and the _action_ is not executed.
 
 The first time the _SingleWithThreshold_ rule will correlate them together, while the second time they are not correlated.
 
 Output looks similar to:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.5.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.5.01.conf
@@ -1009,11 +956,8 @@ foo matched three times in 10 seconds!
 **foo**
 **foo**
 **foo**
-**foo**
-^C
-
-  
-  
+**foo**```
+ 
 
 ---
 
@@ -1029,6 +973,7 @@ Note that both windows are sliding windows- that is, the begining time of the wi
 
 Copy the following to C3.2.6.01.conf:
 
+```shell
 # Example C3.2.6.01.conf
 # Example SingleWith2Threshholds rule.
 # Match thresh A events (go above low watermark) and execute action.
@@ -1048,23 +993,20 @@ desc2=$0
 action2=write - foo stayed under high watermark (5) at time %t
 window2=10
 thresh2=5
+```
+
+ Run with:
+
+`% **perl sec.pl -conf=C3.2.6.01.conf -input=-**`
 
   
-  
-
-Run with:
-
-% **perl sec.pl -conf=C3.2.6.01.conf -input=-**
-
-  
-  
-
-In this example, it will be necessary to time your entries fairly closely. The first example shows three matched events followed by _action_, then less than _thresh2_ (5 events) within _window2_ (10 seconds).
+ In this example, it will be necessary to time your entries fairly closely. The first example shows three matched events followed by _action_, then less than _thresh2_ (5 events) within _window2_ (10 seconds).
 
 The second example shows multiple events after the low watermark then a marked slowing of entries, that results in _action2_.
 
 Output from this example:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.6.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.6.01.conf
@@ -1102,13 +1044,7 @@ foo hit low watermark (3) at time Mon Nov 17 09:42:22 2003
 **foo**
 **foo**
 Writing event 'foo stayed under high watermark (5) at time Mon Nov 17 09:42:49 2003' to file -
-foo stayed under high watermark (5) at time Mon Nov 17 09:42:49 2003
-^C
-
-  
-  
-
----
+foo stayed under high watermark (5) at time Mon Nov 17 09:42:49 2003```
 
 ### 3.2.7 Suppress
 
@@ -1118,6 +1054,7 @@ _Suppress_ is particularly useful with the _context_ parameter. Contexts are dis
 
 Copy the following to C3.2.07.01.conf:
 
+```shell
 # Example C3.2.7.01.conf
 # Example of Suppress.
 # First rule suppresses 'foo'.
@@ -1134,21 +1071,17 @@ ptype=RegExp
 pattern=(.*)
 desc=$0
 action=write - entry was: $0
-
-  
-  
+	```
 
 Run with:
 
-% **perl sec.pl -conf=C3.2.7.01.conf -input=-**
-
-  
-  
+`% **perl sec.pl -conf=C3.2.7.01.conf -input=-**`
 
 In this example, the first rule suppresses ``foo'' while the second rule matches any pattern and writes it to standard output. Since ``foo'' is already suppressed by the first rule, it will never be written by the second rule.
 
 Output looks similar to:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.7.01.conf -input=-    
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.7.01.conf
@@ -1168,21 +1101,18 @@ entry was: bar
 **baz**
 Writing event 'entry was: baz' to file -
 entry was: baz
-^C
+```
 
-  
-  
-
----
 
 ### 3.2.8 Calendar
 
-The _Calendar_ rule is another easy to understand rule. It executes _action_ statements at specific times. The time specification is similar to that used by cron(8), and is detailed in crontab(5).
+The `Calendar` rule is another easy to understand rule. It executes _action_ statements at specific times. The time specification is similar to that used by _cron(8)__, and is detailed in _crontab(5)__.
 
 Note that the time specifications do not include the Vixie cron extensions.
 
 Copy the following to C3.2.8.01.conf:
 
+```shell
 # Example C3.2.8.01.conf
 # Example calendar rule.
 # Write a message every minute.
@@ -1191,19 +1121,15 @@ type=Calendar
 time=* * * * *
 desc=$0
 action=write - The time is now: %t
+```
 
-  
-  
+This example takes no user input. However, the `-input` parameter must still be present on the command line. Run with:
 
-This example takes no user input. However, the ``-input'' parameter must still be present on the command line. Run with:
-
-% **perl sec.pl -conf=C3.2.8.01.conf -input=-**
-
-  
-  
+`% **perl sec.pl -conf=C3.2.8.01.conf -input=-**`
 
 Output is similar to:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.2.8.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.2.8.01.conf
@@ -1214,26 +1140,23 @@ Writing event 'The time is now: Mon Nov 17 10:41:00 2003' to file -
 The time is now: Mon Nov 17 10:41:00 2003
 Writing event 'The time is now: Mon Nov 17 10:42:00 2003' to file -
 The time is now: Mon Nov 17 10:42:00 2003
-^C
+```
 
-  
-  
+Using the `-debug=4` parameter removes the informational debug statements and results in just:
 
-Using the ``-debug=4'' parameter removes the informational debug statements and results in just:
-
+```
 The time is now: Mon Nov 17 10:46:35 2003
 The time is now: Mon Nov 17 10:47:00 2003
 The time is now: Mon Nov 17 10:48:00 2003
 The time is now: Mon Nov 17 10:49:00 2003
 The time is now: Mon Nov 17 10:50:00 2003
-
-  
-  
+```
 
 Note also that SEC invokes the _action_ of all calendar rules at startup, but only at the top of each minute thereafter. Actions that must not occur too closely together must take this into account.
 
-Running applications from SEC is similar. This example runs a script that checks MD5 checksums on a list of files every five minutes. The script takes a single parameter- ``MD5_CHECK'':
+Running applications from SEC is similar. This example runs a script that checks MD5 checksums on a list of files every five minutes. The script takes a single parameter- `MD5_CHECK`':
 
+```shell
 #
 # Run the SystemCheck.sh script every five minutes.
 #
@@ -1241,20 +1164,17 @@ type=Calendar
 time=0,5,10,15,20,25,30,35,40,45,50,55 * * * *
 desc=MD5_CHECK
 action=shellcmd /home/jpb/SEC-examples/SystemCheck.sh %s
-
-  
-  
-
----
+```
 
 ## 3.3 Multiple Input Streams
 
 This section presents another use of the _spawn_ action- obtaining input from multiple input streams. As shown in Section 2.2.3, _spawn_ starts another program and redirects the program output as input to SEC. Both the original input stream and this new input stream are processed by SEC as a single input stream.
 
-To set up SEC to read multiple files, the **tail** program is often used as in the following example.
+To set up SEC to read multiple files, the `tail` program is often used as in the following example.
 
 Copy the following to C3.3.01.conf:
 
+```shell
 #
 # Example C3.3.01.conf
 # Multiple input files with spawn.
@@ -1266,8 +1186,8 @@ pattern=foo
 continue=TakeNext
 desc=$0
 action=spawn /usr/bin/tail -f ./aaa.in ;\
-       spawn /usr/bin/tail -f ./bbb.in ;\
-       spawn /usr/bin/tail -f ./ccc.in ;
+       		 spawn /usr/bin/tail -f ./bbb.in ;\
+      		 spawn /usr/bin/tail -f ./ccc.in ;
 
 
 # Match lines beginning with aaa:
@@ -1276,6 +1196,7 @@ ptype=RegExp
 pattern=^aaa:(.*)
 desc=$0
 action=write aaa.out %s
+
 
 # Match lines beginning with bbb:
 type=Single
@@ -1298,29 +1219,25 @@ ptype=RegExp
 pattern=(.*)
 desc=$0
 action=write other.out %s
-
+```
   
-  
-
-In this example, the _spawn_ action is part of a rule that matches input ``foo''. This means that the spawn actions will not occur until ``foo'' is recognized in the input stream.
+In this example, the _spawn_ action is part of a rule that matches input `foo`. This means that the spawn actions will not occur until `foo` is recognized in the input stream.
 
 After the _tail_ commands will forward input from their respective files into SEC. SEC will treat all input streams the same, and parse input from all streams according to all rules.
 
-Note that the input files aaa.in, bbb.in, and ccc.in must exist before running the example. Use the **touch** command to create these empty files as follows:
+Note that the input files `aaa.in`, `bbb.in`, and `ccc.in` must exist before running the example. Use the **touch** command to create these empty files as follows:
 
-% **touch aaa.in bbb.in ccc.in**
+`% **touch aaa.in bbb.in ccc.in**`
 
-  
-  
-
-Note also that the last rule is a catch-all rule: if the input does not get recognized by any other rule, it will be written to other.out
+ Note also that the last rule is a catch-all rule: if the input does not get recognized by any other rule, it will be written to other.out
 
 Run with:
 
-% **perl sec.pl -conf=C3.3.01.conf -input=-**
+`% **perl sec.pl -conf=C3.3.01.conf -input=-**`
 
 The session starts as follows:
 
+```shell
 jpb@jpb-lt:~/SEC-examples/tmp$perl ../sec.pl -conf=C3.3.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.3.01.conf
@@ -1341,36 +1258,28 @@ Writing event 'bbb:input from terminal' to file bbb.out
 Writing event 'ccc:input from terminal' to file ccc.out
 **ddd:input from terminal**
 Writing event 'ddd:input from terminal' to file other.out
-
-  
-  
+```
 
 So far all input has been from the terminal. In another window or session in the same directory, perform the following commands:
 
-% **echo "aaa:from other session copied into ccc.in" >> ccc.in**
+`% **echo "aaa:from other session copied into ccc.in" >> ccc.in**`
 
-% **echo "bbb:from other session copied into aaa.in" >> aaa.in**
+`% **echo "bbb:from other session copied into aaa.in" >> aaa.in**`
 
-% **echo "ddd:from other session copied into bbb.in" >> bbb.in**
-
-  
-  
+`% **echo "ddd:from other session copied into bbb.in" >> bbb.in**`
 
 SEC processes these inputs as well:
 
-Creating event 'aaa:from other session copied into ccc.in' (received from child 15956)
+```Creating event 'aaa:from other session copied into ccc.in' (received from child 15956)
 Writing event 'aaa:from other session copied into ccc.in' to file aaa.out
 Creating event 'bbb:from other session copied into aaa.in' (received from child 15954)
 Writing event 'bbb:from other session copied into aaa.in' to file bbb.out
 Creating event 'ddd:from other session copied into bbb.in' (received from child 15955)
-Writing event 'ddd:from other session copied into bbb.in' to file other.out
-^C
-
-  
-  
+Writing event 'ddd:from other session copied into bbb.in' to file other.out```
 
 Examine each output file to determine its contents:
 
+```shell
 jpb@jpb-lt:~/SEC-examples/tmp$cat aaa.out
 aaa:input from terminal
 aaa:from other session copied into ccc.in
@@ -1386,71 +1295,55 @@ jpb@jpb-lt:~/SEC-examples/tmp$cat other.out
 foo
 ddd:input from terminal
 ddd:from other session copied into bbb.in
-
-  
-  
+```
 
 As shown above, SEC parsed the input, regardless of where it came from, and performed the actions indicated on each matched rule.
 
----
-
 ## 3.4 Pipe Output
 
-This section looks at another feature of the _write_ action; writing to a ``named pipe'', also called a ``fifo''. This feature provides a simple method of inter-process communication (IPC).
+This section looks at another feature of the _write_ action; writing to a  `named pipe`, also called a `fifo`. This feature provides a simple method of inter-process communication (IPC).
 
 Most Unix systems already have the ability to create and use named pipes. With SEC, the only requirement is that the named pipe must exist before writing to it. Typically this is performed with the **mkfifo** or **mknod** command. Check your system documentation for how to create a named pipe. On BSD based systems, the command is:
 
-% **mkfifo SEC_fifo**
-
-  
-  
+`% **mkfifo SEC_fifo**`
 
 This creates a named pipe in the current directory:
 
-prw-r--r--  1 jpb  staff  -    0 Nov 15 12:38 SEC_fifo
+`prw-r--r--  1 jpb  staff  -    0 Nov 15 12:38 SEC_fifo`
 
-  
-  
+ To be useful, there must be a way to get data out of the named pipe. Copy the following `perl` script to file S3.4.01.pl:
 
-To be useful, there must be a way to get data out of the named pipe. Copy the following perl script to file S3.4.01.pl:
-
-#!/usr/bin/perl
-#
-# Example S3.4.01.pl - Script to read data out of a named pipe.
-#
+```perl
+#!/usr/bin/perl 
+# Example 53.4.01.pl - Script to read data out of a named pipe. 
+# 
 $| = 1;
-$filename = "./SEC_fifo";
-open(FIFO, "+< $filename") or die "fifo  $!";
-print "Start of S3.4.01.pl.  Reading $filename...\n";
-
-while (<FIFO>)
-{
-  $inputline = $_;
-  print "Got: $inputline";
-}
-
-  
-  
-
+	$Filename = "./SEC_fifo";
+	open(FIFO, "+< $filename"") or die "fifo $!";
+	print "Start of 53.4.01.pl.  Reading $filename ... \n " ;
+							 
+	while (<FIFO>)
+	{
+	$inputline = $_;
+	print "Got: $inputline";
+	}
+```
+	
 This script simply copies whatever it receives from the named pipe to standard output.
 
 Run with:
 
-% **perl S3.4.01.pl**
-
-  
-  
+`% **perl S3.4.01.pl**`
 
 The program announces its startup banner and waits for input:
 
+```shell
 jpb@jpb-lt:~/SEC-examples/tmp$perl S3.4.01.pl
 Start of S3.4.01.pl.  Reading ./SEC_fifo...
-
-  
-  
-
+```
 In a separate window or session, create C3.4.01.conf with the following rule:
 
+```shell
 # Example C3.4.01.conf
 # Recognize any pattern and write to a FIFO.
 #
@@ -1459,17 +1352,14 @@ ptype=RegExp
 pattern=(.*)
 desc=$0
 action=write SEC_fifo %s
+```
+ Run with:
 
-  
-  
-
-Run with:
-
-% **perl sec.pl -conf=C3.4.01.conf -input=-**
+`% **perl sec.pl -conf=C3.4.01.conf -input=-**`
 
 and type some text:
 
-jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.4.01.conf -input=-
+```jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.4.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.4.01.conf
 1 rules loaded from C3.4.01.conf
@@ -1479,25 +1369,20 @@ Writing event 'This is' to file SEC_fifo
 Writing event 'a test of' to file SEC_fifo
 **SEC named pipes.**
 Writing event 'SEC named pipes.' to file SEC_fifo
-^C
-
-  
-  
-
+```
+ 
 The output from the reader script looks like:
 
-jpb@jpb-lt:~/SEC-examples$perl S3.4.01.pl
+```jpb@jpb-lt:~/SEC-examples$perl S3.4.01.pl
 Start of S3.4.01.pl.  Reading ./SEC_fifo...
 Got: This is
 Got: a test of
 Got: SEC named pipes.
-^C
-
-  
-  
+```
 
 SEC will complain if it can't write to the pipe. In this example, the reading script was manually terminated after the first input line. All remaining lines received an error:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C3.4.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C3.4.01.conf
@@ -1510,16 +1395,12 @@ Can't open pipe SEC_fifo for writing event 'another test'!
 **of SEC named pipes.**
 Writing event 'of SEC named pipes.' to file SEC_fifo
 Can't open pipe SEC_fifo for writing event 'of SEC named pipes.'!
-^C
-
-  
-  
+```
 
 While trivial, this example illustrates the basic mechanism for passing event correlation analysis to another program. Part Two of this article contains an example of joining SEC with a database system and uses this technique to pass input into the database.
 
----
 
-# 4 Using Contexts
+# 4 [Using Contexts](#USINGCONTEXTS)
 
 SEC has the ability to define and use _contexts_ with rules. A context is ``the interrelated conditions in which something exists or occurs''. In SEC, a context ``exists or occurs'' when it is created by a rule action. In addition to the actions covered in Section 2.2, SEC provides additional actions that create, destroy, add to, report on, or otherwise manipulate a context.
 
@@ -1531,11 +1412,8 @@ Most rules have a ``context'' parameter that is used to interact with contexts. 
 
 -   A logical expression containing a context name
     
--   A perl mini-program if the operand begins with a ``=''
+-   A perl mini-program if the operand begins with a ``=``
     
-
-  
-  
 
 Both types are shown below.
 
@@ -1644,23 +1522,21 @@ context exists, writing foo here
 
 Once the second rule was matched, and the _create_ action was executed, the context FOO_CONTEXT sprang into existence. After that, the first rule was triggered when pattern ``foo'' was matched in the input stream.
 
----
-
 ### 4.1.1 Context Lifetimes
 
 In the example above, the _create_ action created context FOO_CONTEXT with, by default, infinite lifetime. The _create_ action actually has the following syntax:
 
-create [<name> [<time> [<action list>] ] ]
+`create [<name> [<time> [<action list>] ] ]`
 
 The _name_ is the name of the context. _time_ is the lifetime of the context in seconds. The _action list_ parameter is a list of any SEC action statements- each action statement separated by semi-colons, ``;''.
 
 To see the effect of the _time_ (context lifetime) parameter, change the line in C4.1.01.conf from
 
-action=create FOO_CONTEXT
+`action=create FOO_CONTEXT`
 
 to
 
-action=create FOO_CONTEXT 5
+`action=create FOO_CONTEXT 5`
 
   
   
@@ -1669,6 +1545,7 @@ This creates context FOO_CONTEXT with a lifetime of 5 seconds. At the end of its
 
 Re-running the above example:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.1.01.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.1.01.conf
@@ -1682,18 +1559,16 @@ Creating context 'FOO_CONTEXT'
 Writing event 'context exists, writing foo here' to file -
 context exists, writing foo here
 **foo**
-Writing event 'context exists, writing foo here' to file -
+Writing event `context exists, writing foo here` to file -
 context exists, writing foo here
 Deleting stale context 'FOO_CONTEXT'
 **foo**
 **foo**
 **foo**
-^C
+```
 
-  
-  
 
-Here context FOO_CONTEXT did not exist until the second rule was matched (by matching ``bar'') at which time it was created with a lifetime of five seconds.
+  Here context FOO_CONTEXT did not exist until the second rule was matched (by matching ``bar'') at which time it was created with a lifetime of five seconds.
 
 During its five second lifetime the first rule pattern ``foo'' was successfully matched twice and the action statement for the first rule executed twice.
 
@@ -1703,7 +1578,6 @@ After the context expired, the first rule is no longer successfully triggered, e
 
 Contexts are one of the most powerful features of SEC. It is possible to develop complex and intricate event correlation scenarios by combining pattern matching, context creation and manipulation, and actions.
 
----
 
 ### 4.1.2 _create_ Action Lists
 
@@ -1713,7 +1587,7 @@ Action lists on the _create_ statement are executed when the context expires. Th
 
 Copy the following to C4.1.02.conf:
 
-# Example C4.1.02.conf
+```# Example C4.1.02.conf
 # Context example.
 # Write action if context named FOO_CONTEXT exists.
 # Create context with second rule, matching 'bar'
@@ -1730,7 +1604,9 @@ type=Single
 ptype=RegExp
 pattern=bar
 desc=$0
-action=create FOO_CONTEXT 10 (write - Context FOO_CONTEXT is ending; write - Goodbye...;)
+action=create FOO_CONTEXT 10 
+
+	(write - Context FOO_CONTEXT is ending; write - Goodbye...;)```
 
   
   
@@ -1739,13 +1615,11 @@ This configuration is almost identical to C4.1.01.conf with the exception of an 
 
 Run with:
 
-% **perl sec.pl -conf=C4.1.02.conf -input=-**
-
-  
-  
+`% **perl sec.pl -conf=C4.1.02.conf -input=-**`
 
 Output looks like:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.1.02.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.1.02.conf
@@ -1768,14 +1642,15 @@ Deleting stale context 'FOO_CONTEXT'
 Writing event 'Context FOO_CONTEXT is ending' to file -
 Context FOO_CONTEXT is ending
 Writing event 'Goodbye...' to file -
-Goodbye...
-^C
+Goodbye...```
+
 
   
   
 
 Just before context FOO_CONTEXT ended, its _action list_ was executed, resulting in the two _write_ statement sending their text to standard output. Without the informative debug output, the results look like:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.1.02.conf -input=- -debug=4
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.1.02.conf
@@ -1788,13 +1663,8 @@ context exists, writing foo here
 **foo**
 context exists, writing foo here
 Context FOO_CONTEXT is ending
-Goodbye...
-^C
+Goodbye...```
 
-  
-  
-
----
 
 ## 4.2 Other Actions Pertaining To Contexts
 
@@ -1804,19 +1674,17 @@ Context parameters, such as the lifetime and the action list can also be changed
 
 This section presents additional actions that are useful in manipulating contexts.
 
----
-
 ### 4.2.1 Set
 
-set <name> <time> [<action list>]
-
+`set <name> <time> [<action list>]`
+	
 _set_ is used to change the settings for a context. The context identified by _name_ must already exist. Use _set_ to change the _time_ and/or the _action list_ for the context.
 
 Typically, a simple context will be created with _create_ which will be later _set_ with the desired lifetime and action list. Below is an example:
 
 Copy the following to C4.2.01.conf:
 
-# Example C4.2.01.conf
+```# Example C4.2.01.conf
 # Context example.
 # Create context with second rule, matching 'bar'
 # Use set action to extend life of context with first rule.
@@ -1835,20 +1703,16 @@ ptype=RegExp
 pattern=bar
 desc=$0
 action=create FOO_CONTEXT; write - creating context FOO_CONTEXT;
+```
+  
+  Run with the -debug=4 parameter to skip the informative output:
+
+`% **perl sec.pl -conf=C4.2.01.conf -input=- -debug=4**`
 
   
-  
-
-Run with the -debug=4 parameter to skip the informative output:
-
-% **perl sec.pl -conf=C4.2.01.conf -input=- -debug=4**
-
-  
-  
-
 Output looks like:
 
-jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.01.conf -input=- -debug=4
+```jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.01.conf -input=- -debug=4
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.2.01.conf
 **foo**
@@ -1865,22 +1729,17 @@ setting context FOO_CONTEXT lifetime to 10 seconds at Mon Nov 17 22:37:24 2003
 setting context FOO_CONTEXT lifetime to 10 seconds at Mon Nov 17 22:37:29 2003
 **foo**
 setting context FOO_CONTEXT lifetime to 10 seconds at Mon Nov 17 22:37:35 2003
-Context FOO_CONTEXT died at Mon Nov 17 22:37:46 2003
-^C
-
-  
-  
+Context FOO_CONTEXT died at Mon Nov 17 22:37:46 2003```
+ 
 
 This example creates a context (with the second rule) then keeps extending the lifetime of the context (with the first rule) to 10 seconds every time the first rule is triggered. Only when there is no more ``foo'' input does the context finally expire.
 
----
-
 ### 4.2.2 Add and Report
 
-add <name> [<event text>]
+`add <name> [<event text>]`
 
-report <name> [<shellcmd>]
-
+`report <name> [<shellcmd>]
+`
 The _add_ action adds an event to a context. The context parameters do not change, only the contents of the context. Think of the context as a box- _add_ adds events as they occur to the box. Other actions in this section (_delete_, _fill_,_report_, _copy_,and _empty_) operate on the contents of that box.
 
 While its nice to have the capability to add events to a context, its necessary to have a way to get them out. The _report_ action can be used to list the contents of a context through a system command (_shellcmd_). SEC runs the named _shellcmd_ (subject to normal user permissions) and passes the content of the context to standard input of the command.
@@ -1889,6 +1748,7 @@ The following example creates a context (MY_CONTEXT), adds events to it, and rep
 
 The first attempt is shown in C4.2.02.conf:
 
+```shell
 # Example C4.2.02.conf
 # Rule 1: create context MY_CONTEXT
 # Rule 2: Add to context MY_CONTEXT
@@ -1917,13 +1777,11 @@ ptype=RegExp
 pattern=ReportMe
 context=MY_CONTEXT
 desc=$0
-action=report MY_CONTEXT /bin/cat
+action=report MY_CONTEXT /bin/cat```
 
-  
-  
+  When run, this attempt looks like:
 
-When run, this attempt looks like:
-
+```shell 
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.02.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.2.02.conf
@@ -1940,30 +1798,27 @@ Adding event 'ReportMe' to context 'MY_CONTEXT'
 **ReportMe**
 Adding event 'ReportMe' to context 'MY_CONTEXT'
 **???**
-Adding event '???' to context 'MY_CONTEXT'
-^C
+Adding event '???' to context 'MY_CONTEXT'```
 
-  
-  
 
-What is happening in this case is that the pattern match for rule 2 ``(.*)'' is swallowing the input ``ReportMe'' before it gets to the third rule.
+ What is happening in this case is that the pattern match for rule 2 ``(.*)'' is swallowing the input ``ReportMe'' before it gets to the third rule.
 
 A possible fix is to add continue=TakeNext to rule 2:
 
-# Anything else gets added to context 'MY_CONTEXT'
+```# Anything else gets added to context 'MY_CONTEXT'
 type=Single
 ptype=RegExp
 pattern=(.*)
 continue=TakeNext
 desc=$0
 action=add MY_CONTEXT $0
-
+```
   
   
 
 This produces:
 
-jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.02.conf -input=-
+```jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.02.conf -input=-
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.2.02.conf
 3 rules loaded from C4.2.02.conf
@@ -1981,16 +1836,13 @@ Child 2180 created for command '/bin/cat'
 CreateMe
 line one
 line two
-ReportMe
-^C
-
-  
-  
+ReportMe```
 
 This works, but the ``CreateMe'' and ``ReportMe'' input ends up in the context and itself is reported.
 
 A bit more elegant solution is to reverse the order of rules 2 and 3. And now, no continue=TakeNext is needed:
 
+```shell
 # Example C4.2.02.conf
 # Rule 1: create context MY_CONTEXT
 # Rule 2: report context MY_CONTEXT
@@ -2019,12 +1871,14 @@ ptype=RegExp
 pattern=(.*)
 desc=$0
 action=add MY_CONTEXT $0
+	```
 
   
   
 
 Without the informative debug statements the output is:
 
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.02.conf -input=- -debug=4
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.2.02.conf
@@ -2034,10 +1888,6 @@ Reading configuration from C4.2.02.conf
 **ReportMe**
 line one
 line two
-^C
-
-  
-  
 
 This example highlights the fact that rule order can be important in SEC.
 
@@ -2047,12 +1897,13 @@ The last example in this section highlights a very common use of SEC- match patt
 
 ### 4.2.3 Fill
 
-fill <name> [<event text>]
+`fill <name> [<event text>]`
 
 The _fill_ action was introduced in SEC version 2.1.11.. This action behaves like _add_ with one important difference- the context is emptied before the _event text_ is added.
 
 Copy the following to C4.2.03.conf:
 
+```shell
 # Example C4.2.03.conf
 # Rule 1: create context MY_CONTEXT
 # Rule 2: report context MY_CONTEXT
@@ -2089,19 +1940,18 @@ ptype=RegExp
 pattern=(.*)
 desc=$0
 action=add MY_CONTEXT $0
+```
 
   
   
 
 Run without informative debug:
 
-% **perl sec.pl -conf=C4.2.03.conf -input=- -debug=4**
+`% **perl sec.pl -conf=C4.2.03.conf -input=- -debug=4**`
 
-  
-  
+  Output looks similar to:
 
-Output looks similar to:
-
+```shell
 jpb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.03.conf -input=- -debug=4
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.2.03.conf
@@ -2125,23 +1975,20 @@ line four
 fill executed
 line five
 line six
-^C
-
-  
-  
+```
 
 As shown above, the _fill_ action clears out the context. If the _event text_ is not given, _%s_ (the ``desc'' parameter) is assumed for it's value. The next matching event will be added to the context immediately after any text included with the _fill_ action.
 
----
 
 ### 4.2.4 Delete
 
-delete <name>
+`delete <name>`
 
 The _delete_ action simply deletes the context. Happily, if the context doesn't exist no operation is performed. Just as in perl, there is no harm in undefining a variable that doesn't exist.
 
 To see the effect of this action, copy the following to C4.2.04.conf:
 
+```shell
 # Example C4.2.04.conf
 # Rule 1: create context MY_CONTEXT
 # Rule 2: report context MY_CONTEXT
@@ -2178,20 +2025,18 @@ ptype=RegExp
 pattern=(.*)
 desc=$0
 action=add MY_CONTEXT $0
+```
 
-  
-  
+	Run without informative debug:
 
-Run without informative debug:
-
-% **perl sec.pl -conf=C4.2.04.conf -input=- -debug=4**
+`% **perl sec.pl -conf=C4.2.04.conf -input=- -debug=4**`
 
   
   
 
 The output should look similar to:
 
-pb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.04.conf -input=- -debug=4
+```pb@jpb-lt:~/SEC-examples$perl sec.pl -conf=C4.2.04.conf -input=- -debug=4
 Simple Event Correlator version 2.1.11
 Reading configuration from C4.2.04.conf
 **CreateMe**
@@ -2205,18 +2050,12 @@ line three
 **DeleteMe**
 **ReportMe**
 **DeleteMe**
-**ReportMe**
-^C
-
-  
-  
-
----
-
+**ReportMe**```
+ 
 ### 4.2.5 Copy
 
-copy <name> %<letter>
-
+`copy <name> %<letter>
+`
 The _copy_ action takes the contents of a context and assigns it to a SEC letter variable. In previous versions of SEC, there was no way to access the contents of a context from inside SEC. The only way was to run _report_, or _shellcmd_ actions which feed context content to external programs.
 
 This can be useful for determining current state in a complex set of events. Suppose that there were several motors used in an experiment, each one sending state information such as ``ON'' ``OFF'', ``SLOWSPEED'', ``FASTSPEED'', etc. to a central console. As the experiment proceeds and the motors change state, it is now possible to get the current state (and all previous states) into a single variable.

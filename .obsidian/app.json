@@ -1,4 +1,10 @@
 {
   "strictLineBreaks": true,
-  "spellcheck": true
+  "spellcheck": true,
+  "attachmentFolderPath": "./",
+  "newLinkFormat": "shortest",
+  "alwaysUpdateLinks": true,
+  "spellcheckDictionary": [
+    "Correlator"
+  ]
 }

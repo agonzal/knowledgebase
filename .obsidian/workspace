@@ -4,23 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "21023ff11c589d7e",
+        "id": "a35e9399d0499992",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Offensive Security/Linux/Linux Persistence.md",
-            "mode": "preview"
-          }
-        }
-      },
-      {
-        "id": "7913637fc70ace49",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Offensive Security/Cloud/Azure Active Directory.md",
+            "file": "SEC/man.md",
             "mode": "source"
           }
         }
@@ -71,7 +60,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 260
   },
   "right": {
     "id": "a6b52c0a08d7c69c",
@@ -87,14 +76,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Offensive Security/Linux/Linux Persistence.md",
+                "file": "SEC/man.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -104,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Offensive Security/Linux/Linux Persistence.md"
+                "file": "SEC/man.md"
               }
             }
           },
@@ -124,19 +113,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 268
+    "width": 378
   },
-  "active": "21023ff11c589d7e",
+  "active": "a35e9399d0499992",
   "lastOpenFiles": [
-    "Offensive Security/Linux/Linux Persistence.md",
-    "Offensive Security/Windows/Privilege Escalation.md",
-    "Offensive Security/Windows/Persistence.md",
-    "Offensive Security/Cloud/AWS.md",
-    "Offensive Security/Cloud/Azure Active Directory.md",
-    "Offensive Security/Windows/Avtive Directory Attacks.md",
-    "Offensive Security/Methodology/Network Discovery.md",
-    "Offensive Security/Methodology/Network Pivoting.md",
-    "Offensive Security/Methodology/Bug Bounty.md",
-    "Offensive Security/Windows/Mimikatz.md"
+    "SEC/man.md",
+    "SEC/SEC TUTORIAL.md",
+    "Datamash/Documentation.md",
+    "NTLM/NTLM Authentication.md",
+    "NTLM/NTLM Relay.md",
+    "SEC/Working with SEC.md",
+    "SEC/Working with SEC (Part 2).md",
+    "zed/formats/zst.md",
+    "SEC/MANUAL.md",
+    "Containers/Podman.md"
   ]
 }

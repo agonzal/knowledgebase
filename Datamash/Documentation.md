@@ -1,7 +1,5 @@
 # GNU Datamash 1.3
 
-## Table of Contents
-
 -   [1 Overview](https://www.gnu.org/software/datamash/manual/datamash.html#Overview)
 -   [2 Invoking `datamash`](https://www.gnu.org/software/datamash/manual/datamash.html#Invoking-datamash)
 -   [3 Available operations in `datamash`](https://www.gnu.org/software/datamash/manual/datamash.html#Available-Operations)
